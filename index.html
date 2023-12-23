@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Headbreaker Puzzle Example</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+<!-- MY_CSS -->
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <nav>     
+        <div class="navBar" onmouseover="pauseClock()">
+            <div class="hoverImg">
+                <span class="material-symbols-outlined" id="fullimg">image</span>
+                <img src="/l1.avif" id="h1img"alt="">
+
+              </div>
+              <div class="time">
+                <span id="timer">0 : 0</span>
+              </div>
+              <div class="refresh">
+                <button onclick="refreshPage()" id="ref">ReStart</button>
+              </div>
+        </div>
+    </nav>
+
+
+
+    <div id="my-canvas"></div>
+
+    <script src="https://flbulgarelli.github.io/headbreaker/js/headbreaker.js"></script>
+<!-- MY_JS -->
+    <script src="index.js"></script>
+
+  </body>
+</html>
