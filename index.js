@@ -2,7 +2,7 @@
 var w = window.innerWidth;
 var h = window.innerHeight - 40;
 let dali = new Image();
-dali.src = "l1.avif";
+dali.src = "img.webp";
     dali.onload = () => {
         const canvas = new headbreaker.Canvas("my-canvas", {
         width: 350,
