@@ -1,60 +1,71 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .navBar {
-    width: 100vw;
-    height: 40px;
-    background-color: rgb(57, 57, 56);
-    display: flex;
-    justify-content: space-around;
-    color:white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: antiquewhite;
+}
+.navBar {
+  width: 100vw;
+  height: 40px;
+  background-color: rgb(57, 57, 56);
+  display: flex;
+  justify-content: space-around;
+  color:white;
 
-  }
-  #my-canvas {
-    /* border: 2px solid #de5858;*/
-    width: fit-content;
-    height: fit-content;
-    background-color: #616252;
-    filter: blur(0px);
-    
-  }
-  .img2 {
-    width: 700px;
-    height: 600px;
-    
-  }
-  #fullimg:hover + #h1img{
-    display: inline-block;
-    z-index: 10;        
-  }
-  nav:hover + #my-canvas{
-    filter: blur(7px);
-  }
+}
+#my-canvas {
+  /* border: 2px solid #de5858;*/
+  width: fit-content;
+  height: fit-content;
+  background-color: #616252;
+  filter: blur(0px);
+  padding: 0;
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+}
+.img2 {
+  width: 700px;
+  height: 600px;
+  
+}
+#fullimg:hover + #h1img{
+  display: inline-block;
+  z-index: 10;        
+}
+nav:hover + #my-canvas{
+  filter: blur(7px);
+}
 
-  #h1img{
-    display: none;
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width:400px;
-    height: 300px;
-    box-shadow: 5px 5px 5px 3px rgba(255, 255, 255, 0.272),-5px -5px 5px 3px rgb(255, 255, 255, 0.272);
-    z-index: 10;
-  }
-  #fullimg{
-    font-size: 40px;
-  }
-  #timer{
-    font-size: 25px;
-  }
-  #ref{
-    width: 80px;
-    height: 30px;
-    font-size: 20px;
-    border-radius: 10px;
-    
-    margin-top: 0.3em;
-  }
+#h1img{
+  display: none;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width:400px;
+  height: 300px;
+  box-shadow: 5px 5px 5px 3px rgba(255, 255, 255, 0.272),-5px -5px 5px 3px rgb(255, 255, 255, 0.272);
+  z-index: 10;
+}
+#fullimg{
+  font-size: 40px;
+}
+#timer{
+  font-size: 25px;
+}
+#ref{
+  width: 80px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  
+  margin-top: 0.3em;
+}
