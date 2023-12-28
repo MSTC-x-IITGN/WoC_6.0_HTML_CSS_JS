@@ -1,114 +1,126 @@
+var rows = 3;
+var columns = 3;
 
-var w = window.innerWidth;
-var h = window.innerHeight - 40;
-let dali = new Image();
-dali.src = "img.webp";
-    dali.onload = () => {
-        const canvas = new headbreaker.Canvas("my-canvas", {
-        width: 350,
-        height: 350,
-        image: dali,
-        proximity: 10,
-        pieceSize: 100,
-        borderFill: 10,
-        lineSoftness: 0.2,
-        image: dali,
-        painter: new headbreaker.painters.Konva(),
-        outline: new headbreaker.outline.Rounded(),
-        preventOffstageDrag: true,
-        fixed: true,
-    });
-    canvas.sketchPiece({
-        structure: 'TS--',
-        metadata: { id: 'a', targetPosition: { x: 100, y: 100 } },
-      });
-      canvas.sketchPiece({
-        structure: 'SSS-',
-        metadata: { id: 'b', targetPosition: { x: 200, y: 100 } },
-      });
-      canvas.sketchPiece({
-        structure: '-ST-',
-        metadata: { id: 'c', targetPosition: { x: 300, y: 100 } },
-      });
-      canvas.sketchPiece({
-        structure: 'TT-T',
-        metadata: { id: 'd', targetPosition: { x: 100, y: 200 } },
-      });
-    canvas.sketchPiece({
-        structure: 'TSST',
-        metadata: { id: 'e', targetPosition: { x: 200, y: 200 } },
-      });
-      canvas.sketchPiece({
-        structure: '-TST',
-        metadata: { id: 'f', targetPosition: { x: 300, y: 200 } },
-      });
-      canvas.sketchPiece({
-        structure: 'T--S',
-        metadata: { id: 'g', targetPosition: { x: 100, y: 300 } },
-      });
-      canvas.sketchPiece({
-        structure: 'S-ST',
-        metadata: { id: 'h', targetPosition: { x: 200, y: 300 } },
-      });
-      canvas.sketchPiece({
-        structure: '--TS',
-        metadata: { id: 'i', targetPosition: { x: 300, y: 300 } },
-      });
-        // canvas.autogenerate({
-        //     horizontalPiecesCount: 3,
-        //     verticalPiecesCount: 3,
-        // });
-        canvas.shuffle(0.5);
-        canvas.draw();   
+var currTile;
+var otherTile;
+
+var turns = 0;
+// var correctOrder = [];
+
+window.onload = function () {
+  initializeBoard();
+  // initializeCorrectOrder();
 };
 
+function initializeBoard() {
+  // Initialize the 3x3 board
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      let tile = document.createElement("img");
+      tile.src = "./images/blank2.jpg";
 
-let element = document.getElementById('timer');
-let min = 0;
-let sec = 0;
-function clock(){
-    
-    timer = setInterval(() => {
-        element.innerHTML = min + " : " + sec;
-        sec++;
-        if(sec == 60){
-            min = min + 1;
-            
-            sec=0;
-        }
-    },1000);
-}
-clock();
+      // DRAG FUNCTIONALITY
+      tile.addEventListener("dragstart", dragStart);
+      tile.addEventListener("dragover", dragOver);
+      tile.addEventListener("dragenter", dragEnter);
+      tile.addEventListener("dragleave", dragLeave);
+      tile.addEventListener("drop", dragDrop);
+      tile.addEventListener("dragend", dragEnd);
 
-
-function refreshPage(){
-    window.location.reload();
-} 
-  
-function checkSolved() {
-    const pieces = canvas.pieces(); // Retrieve all puzzle pieces
-  
-    for (const piece of pieces) {
-      const currentPosition = piece.position();
-      const targetPosition = piece.metadata.targetPosition;
-  
-      // Check for exact position match, considering both x and y coordinates
-      if (currentPosition.x !== targetPosition.x || currentPosition.y !== targetPosition.y) {
-        return false; // Not solved if any piece is not in its target position
-      }
+      document.getElementById("board").append(tile);
     }
-  
-    return true; // All pieces are in their target positions, puzzle is solved!
   }
-  
-  // Call the checkSolved function periodically to check for completion
-  
-  // When the puzzle is solved, stop the timer and display a message
-  checkInterval.unref(); // Prevent interval from blocking program exit
-  checkSolved(); // Check for completion immediately
-  
-  if (checkSolved()) {
-      clearInterval(timer); // Stop the timer
-      alert("Congratulations! You solved the puzzle!");
+
+  // Initialize the pieces
+  let pieces = [];
+  for (let i = 1; i <= rows * columns; i++) {
+    pieces.push(i.toString());
+  }
+  pieces.reverse();
+  for (let i = 0; i < pieces.length; i++) {
+    let j = Math.floor(Math.random() * pieces.length);
+    // Swap
+    let tmp = pieces[i];
+    pieces[i] = pieces[j];
+    pieces[j] = tmp;
+  }
+
+  for (let i = 0; i < pieces.length; i++) {
+    let tile = document.createElement("img");
+    tile.src = "./images/" + pieces[i] + ".jpeg";
+
+    // DRAG FUNCTIONALITY
+    tile.addEventListener("dragstart", dragStart);
+    tile.addEventListener("dragover", dragOver);
+    tile.addEventListener("dragenter", dragEnter);
+    tile.addEventListener("dragleave", dragLeave);
+    tile.addEventListener("drop", dragDrop);
+    tile.addEventListener("dragend", dragEnd);
+
+    document.getElementById("pieces").append(tile);
+  }
+}
+const correctOrder = ["1", "4", "7", "2", "5", "8", "3", "6", "9"];
+
+function isCorrectOrder() {
+  let currentOrder = [];
+  let tiles = document.getElementById("board").getElementsByTagName("img");
+
+  for (let i = 0; i < tiles.length; i++) {
+    let imageName = tiles[i].src.split("/").pop();
+
+    let pieceNumber = parseInt(imageName.split(".")[0]);
+    console.log(imageName + "   " + pieceNumber);
+    if (!isNaN(pieceNumber)) {
+      currentOrder.push(pieceNumber.toString());
+    } else {
+      console.error("Failed to convert to integer: " + imageName);
     }
-    const checkInterval = setInterval(checkSolved, 500); // Check every 500 milliseconds
+  }
+
+  if (
+    JSON.stringify(currentOrder) != JSON.stringify(correctOrder) &&
+    currentOrder.length == 9
+  ) {
+    alert("Retry");
+    setTimeout(function () {
+      window.location.reload();
+    }, 1000);
+  }
+  return JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
+}
+
+function dragStart() {
+  currTile = this;
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+}
+
+function dragLeave() {}
+
+function dragDrop() {
+  otherTile = this;
+}
+
+function dragEnd() {
+  if (currTile.src.includes("blank")) {
+    return;
+  }
+
+  let currImg = currTile.src;
+  let otherImg = otherTile.src;
+  currTile.src = otherImg;
+  otherTile.src = currImg;
+
+  turns += 1;
+  document.getElementById("turns").innerText = turns;
+  if (isCorrectOrder()) {
+    alert("Congratulations! Puzzle solved!");
+  }
+}

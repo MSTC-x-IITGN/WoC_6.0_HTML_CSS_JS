@@ -1,42 +1,34 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jigsaw Puzzle</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-<!-- MY_CSS -->
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <nav>     
-        <div class="navBar" onmouseover="pauseClock()">
-            <div class="hoverImg">
-                <span class="material-symbols-outlined" id="fullimg">image</span>
-                <img src="/img.webp" id="h1img"alt="">
-              </div>
-              <div class="time">
-                <span id="timer">0 : 0</span>
-              </div>
-              <div class="refresh">
-                <button onclick="refreshPage()" id="ref">ReStart</button>
-              </div>
-              <div id="checkButton">
-                <button id="ref">Check</button>
-              </div>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Puzzle</title>
+        <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      />
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js"></script>
+    </head>
+
+    <body>
+        <!-- Heading -->
+        <div class="heading">
+            <h1>PUZZLE</h1>
         </div>
-    </nav>
-    <div class="line"></div>
-
-
-    <div id="my-canvas"></div>
-
-    <script src="https://flbulgarelli.github.io/headbreaker/js/headbreaker.js"></script>
-<!-- MY_JS -->
-    <script src="index.js"></script>
-
-  </body>
+        
+        <!-- Add Board -->
+        <br>
+        <div class="main-box">
+            <!-- <div class="boardAns"><img src="/imageonline/i1.jpeg" alt="" class="imageAns"></div> -->
+            <div id="board"></div>
+        </div>
+        <div class="dataOfImg">
+            <h2>Turns: <span id="turns">0</span></h2>
+            <br><br>
+        <div id="pieces"></div>
+        </div>
+    </body>
 </html>
