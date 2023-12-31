@@ -42,14 +42,16 @@ window.onload = function () {
 
   // Retrieve the best time from local storage
   let savedBestTime = localStorage.getItem(puzzleName);
-  console.log("********" + savedBestTime);
+  
   let p = document.getElementById("bt");
+
   p.innerHTML = "Best Time" + "  : " + savedBestTime + "s";
+
   // Display the best time if available
-  if (savedBestTime !== "") {
-    console.log(
-      "Best Time for " + puzzleName + ": " + savedBestTime + " seconds"
-    );
+  if (savedBestTime !== null) {
+    p.innerHTML = "Best Time" + "  : " + savedBestTime + "s";
+  }else{
+    p.innerHTML = "Best Time" + "  : ";
   }
 };
 
