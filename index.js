@@ -1,11 +1,36 @@
 var rows = 3;
 var columns = 3;
-
+var namee = document.title;
+console.log(namee);
 var currTile;
 var otherTile;
-
 var turns = 0;
+let bestTime = Infinity;
 // var correctOrder = [];
+
+
+//Time print Function
+let element = document.getElementById('timer');
+let min = 0;
+let sec = 0;
+let timer; // Declare the timer variable
+let flag=0;//for timer off
+let x = 0 + " : " + 0 ;//store time for print alert
+
+function clock() {
+    timer = setInterval(() => {
+        element.innerHTML = min + " : " + sec;
+        x = element.innerHTML
+        sec++;
+        if (sec == 60) {
+            min = min + 1;
+            sec = 0;
+        }
+    }, 1000);
+}
+
+clock();
+
 
 window.onload = function () {
   initializeBoard();
@@ -17,7 +42,7 @@ function initializeBoard() {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       let tile = document.createElement("img");
-      tile.src = "./images/blank2.jpg";
+      tile.src = "../images/blank2.jpg";
 
       // DRAG FUNCTIONALITY
       tile.addEventListener("dragstart", dragStart);
@@ -47,7 +72,7 @@ function initializeBoard() {
 
   for (let i = 0; i < pieces.length; i++) {
     let tile = document.createElement("img");
-    tile.src = "./images/" + pieces[i] + ".jpeg";
+    tile.src = "../images/"+namee + "/" + pieces[i] + ".jpg";
 
     // DRAG FUNCTIONALITY
     tile.addEventListener("dragstart", dragStart);
@@ -60,12 +85,12 @@ function initializeBoard() {
     document.getElementById("pieces").append(tile);
   }
 }
-const correctOrder = ["1", "4", "7", "2", "5", "8", "3", "6", "9"];
+const correctOrder = ["9","8","7","6","5","4","3","2","1"];
 
 function isCorrectOrder() {
   let currentOrder = [];
   let tiles = document.getElementById("board").getElementsByTagName("img");
-
+  console.log(tiles)
   for (let i = 0; i < tiles.length; i++) {
     let imageName = tiles[i].src.split("/").pop();
 
@@ -121,6 +146,9 @@ function dragEnd() {
   turns += 1;
   document.getElementById("turns").innerText = turns;
   if (isCorrectOrder()) {
-    alert("Congratulations! Puzzle solved!");
+    alert("Congratulations! Puzzle solved! \n Your Total Time taken is : "  + x );
+    window.location.reload();
   }
 }
+
+
