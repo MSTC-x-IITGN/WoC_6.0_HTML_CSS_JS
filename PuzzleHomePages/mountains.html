@@ -1,42 +1,41 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>mountains</title>
-        <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-      />
-        <link rel="stylesheet" href="../index.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mountains</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="../index.css" />
+  </head>
 
-    <body>
-        <div class="navBar">
-            <div class="heading">
-                <h1 id="puzzleName">PUZZLE</h1>
-            </div>
-            <h2>Turns: <span id="turns">0</span>   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Time: <span id="timer">0 : 0</span></h2>
+  <body>
+    <div class="navBar">
+      <div class="heading">
+        <h1 id="puzzleName">PUZZLE</h1>
+      </div>
+      <h2 class="innerHead">
+        <p><span id="bt">bestTime : </span></p>
+      </h2>
+    </div>
 
-        </div>
-        <!-- Heading -->
-        <!-- <div class="heading">
-            <h1>PUZZLE</h1>
-        </div> -->
-        
-        <!-- Add Board -->
-        <br>
-        <div class="main-box">
-            <!-- <div class="boardAns"><img src="/imageonline/i1.jpeg" alt="" class="imageAns"></div> -->
-            <div id="board"></div>
-        </div>
-        <div class="dataOfImg">
-            <!-- <h2>Turns: <span id="turns">0</span></h2> -->
-            <br><br>
-        <div id="pieces"></div>
-        </div>
-    </body>
-    
-    <script src="../index.js"></script>
+    <!-- Add Board -->
+    <br />
+    <div class="main-box">
+      <!-- <div class="boardAns"><img src="/imageonline/i1.jpeg" alt="" class="imageAns"></div> -->
+      <div id="board"></div>
+    </div>
+    <div class="dataOfImg">
+      <div class="datas">
+        <div class="space">Turns: <span id="turns">0</span></div>
+        <div class="space">Time: <span id="timer">0 : 0</span></div>
+      </div>
+      <br /><br />
+      <div id="pieces"></div>
+    </div>
+  </body>
+
+  <script src="../index.js"></script>
 </html>

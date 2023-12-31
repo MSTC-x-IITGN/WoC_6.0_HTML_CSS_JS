@@ -85,6 +85,25 @@ h2{
     -webkit-text-stroke: 2px black; /* Adjust the border thickness as needed */
     text-stroke: 2px black;
 }
+.dataOfImg .datas{
+    
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    font-size: 40px;
+    display: flex;
+    background: linear-gradient(to right, #CFCF1D 40%, #CF0AB5 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    -webkit-text-stroke: 2px black; /* Adjust the border thickness as needed */
+    text-stroke: 2px black;  
+}
+.space{
+    margin-left:50px;
+    width: 250px;
+    /* border: 1px solid black; */
+}
 .navBar{
     display: flex;
     background: rgb(255,201,2);
@@ -93,22 +112,7 @@ h2{
     width: 101.3%;
     justify-content: space-evenly;
 }
-
-/* Apply styles to the winning message */
-.win-message {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 20px;
-    border: 2px solid #000000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.innerHead{
+    display: flex;
+    justify-content: space-around;
 }
-.win-message.show {
-    display: block;
-}
-.body-blure {
-    /* filter: blur(5px); */
-  }

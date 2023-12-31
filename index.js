@@ -8,33 +8,49 @@ var turns = 0;
 let bestTime = Infinity;
 // var correctOrder = [];
 
-
 //Time print Function
-let element = document.getElementById('timer');
+let element = document.getElementById("timer");
 let min = 0;
 let sec = 0;
 let timer; // Declare the timer variable
-let flag=0;//for timer off
-let x = 0 + " : " + 0 ;//store time for print alert
+let flag = 0; //for timer off
+let x = 0 + " : " + 0; //store time for print alert
 
 function clock() {
-    timer = setInterval(() => {
-        element.innerHTML = min + " : " + sec;
-        x = element.innerHTML
-        sec++;
-        if (sec == 60) {
-            min = min + 1;
-            sec = 0;
-        }
-    }, 1000);
+  timer = setInterval(() => {
+    element.innerHTML = min + " : " + sec;
+    x = element.innerHTML;
+    sec++;
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+  }, 1000);
 }
 
 clock();
 
-
+// window.onload = function () {
+//   initializeBoard();
+//   // initializeCorrectOrder();
+// };
 window.onload = function () {
   initializeBoard();
-  // initializeCorrectOrder();
+
+  // Get the puzzle name from the document title
+  let puzzleName = document.title;
+
+  // Retrieve the best time from local storage
+  let savedBestTime = localStorage.getItem(puzzleName);
+  console.log("********" + savedBestTime);
+  let p = document.getElementById("bt");
+  p.innerHTML = "Best Time" + "  : " + savedBestTime + "s";
+  // Display the best time if available
+  if (savedBestTime !== "") {
+    console.log(
+      "Best Time for " + puzzleName + ": " + savedBestTime + " seconds"
+    );
+  }
 };
 
 function initializeBoard() {
@@ -72,7 +88,7 @@ function initializeBoard() {
 
   for (let i = 0; i < pieces.length; i++) {
     let tile = document.createElement("img");
-    tile.src = "../images/"+namee + "/" + pieces[i] + ".jpg";
+    tile.src = "../images/" + namee + "/" + pieces[i] + ".jpg";
 
     // DRAG FUNCTIONALITY
     tile.addEventListener("dragstart", dragStart);
@@ -85,12 +101,12 @@ function initializeBoard() {
     document.getElementById("pieces").append(tile);
   }
 }
-const correctOrder = ["9","8","7","6","5","4","3","2","1"];
+const correctOrder = ["9", "8", "7", "6", "5", "4", "3", "2", "1"];
 
 function isCorrectOrder() {
   let currentOrder = [];
   let tiles = document.getElementById("board").getElementsByTagName("img");
-  console.log(tiles)
+  console.log(tiles);
   for (let i = 0; i < tiles.length; i++) {
     let imageName = tiles[i].src.split("/").pop();
 
@@ -146,9 +162,15 @@ function dragEnd() {
   turns += 1;
   document.getElementById("turns").innerText = turns;
   if (isCorrectOrder()) {
-    alert("Congratulations! Puzzle solved! \n Your Total Time taken is : "  + x );
-    window.location.reload();
+    alert("Congratulations! Puzzle solved! \n Your Total Time taken is : " + x);
+
+    clearInterval(timer);
+    let puzzleName = document.title;
+    let currentTime = min * 60 + sec;
+    if (currentTime < bestTime) {
+      alert("Your Score is Higest");
+      bestTime = currentTime;
+      localStorage.setItem(puzzleName, bestTime);
+    }
   }
 }
-
-
